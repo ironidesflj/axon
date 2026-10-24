@@ -1,0 +1,24 @@
+{
+  "name": "@noos/axon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Biblioteca compartilhada do ecossistema Noos: schema de questões, IDs públicas e deep-link canônico. Spec-first na v0.1.0: o contrato (constitution.md) é a entrega; o código vem na fatia F1 (ver plan.md). O nome plano 'axon' esta tomado no npm por terceiros — a publicacao usa este escopo.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ironidesflj/axon"
+  },
+  "files": [
+    "constitution.md",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE.md"
+  ],
+  "keywords": [
+    "noos",
+    "axon",
+    "specification-driven-development",
+    "question-bank",
+    "spaced-repetition"
+  ]
+}
