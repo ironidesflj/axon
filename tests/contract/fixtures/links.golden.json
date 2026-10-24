@@ -1,0 +1,21 @@
+{
+  "canonical": {
+    "RAN-AZ900-00042": {
+      "pt": "https://noos.study/pt/q/RAN-AZ900-00042",
+      "en": "https://noos.study/en/q/RAN-AZ900-00042"
+    }
+  },
+  "fallback": {
+    "RAN-AZ900-00042": {
+      "pt": "https://noos-hub.vercel.app/pt/q/RAN-AZ900-00042",
+      "en": "https://noos-hub.vercel.app/en/q/RAN-AZ900-00042"
+    }
+  },
+  "resolveAlias": {
+    "alias": "GLI-AZ900-00012",
+    "table": {
+      "GLI-AZ900-00012": "RAN-AZ900-00042"
+    },
+    "canonical": "RAN-AZ900-00042"
+  }
+}

@@ -1,6 +1,6 @@
 # spec-id-generator
 
-Especificação da fatia F1 · estado: **especificada, aguardando implementação**
+Especificação da fatia F1 · estado: **implementada na v0.2.0** (`src/id-generator.ts`, suíte em `tests/contract/id-generator.test.ts`)
 
 ## Problema
 
@@ -36,14 +36,32 @@ registro; código de prova alfanumérico sem traços; sequencial 5 dígitos com
 zero à esquerda, começando em `00001`; `lastIssued` é responsabilidade do
 chamador (o Axon não guarda estado entre chamadas — sem serviço, sem banco).
 
+## Travado na revisão de implementação (v0.2.0)
+
+- **Esgotamento:** `generateId` lança quando `lastIssued = 99999` — o formato
+  de 5 dígitos é lei (constitution §1); alargar o formato exige RFC, nunca
+  silêncio.
+- **`generateId` normaliza a prova** (traços/espaços fora, maiúsculas:
+  `"az-900"` → `AZ900`); **`validateId` é estrito** (minúscula rejeita) —
+  gerar é amigável, validar é lei.
+- **`validateAliasId`** (nova na superfície): a validação usada no campo
+  `aliases` do manifesto — aceita prefixos do registro **e** alias
+  históricos (`GLI-`). `validateId` continua a porta estrita da ID oficial.
+- **`aliasOf` valida o par** e nega alias de prefixo conhecido apontando
+  para irmão errado (`GLI-…` só aponta para `RAN-…`, constitution §1 R2).
+- **`MAX_SEQ = 99999`** exportado (o teto do formato, citável).
+
 ## Aceitação (evidência de conclusão)
 
-- Testes de unidade: gera `00001` no primeiro caso; valida o exemplo canônico
-  `RAN-AZ900-00042`; rejeita prefixo fora do registro, sequencial com 4
-  dígitos, prova com espaço e minúsculas em prefixo.
-- Zero dependência externa no runtime; roda em browser e Node.
-- Documentação do pacote mostra o exemplo canônico gerado por código real
-  (não string fixa).
+- ✅ Testes de unidade: gera `00001` no primeiro caso; valida o exemplo canônico
+  `RAN-AZ900-00042` **por código real** (`generateId('RAN','AZ900',41)`);
+  rejeita prefixo fora do registro, sequencial com 4 dígitos, prova com
+  espaço e minúsculas em prefixo — 12 casos citáveis (`§1 …`) verdes.
+- ✅ Zero dependência externa no runtime; roda em browser e Node
+  (evidência Node: a suíte; browser: isomorfia por construção, ver
+  limitação no `current-state.md`).
+- ✅ Documentação do pacote mostra o exemplo canônico gerado por código real
+  (não string fixa) — ver README.
 
 ## Efeito no manifesto
 

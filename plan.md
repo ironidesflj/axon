@@ -4,31 +4,42 @@ Out/2026 · três pistas: **biblioteca**, **publicação**, **adoção**.
 (As pistas "apps" e "hub UI" pertencem aos repositórios deles; aqui só o que
 é da biblioteca.)
 
+## Feito
+
+- **F1 — fatia mínima, implementada na v0.2.0** (specs → código, suíte verde):
+  - `spec-id-generator.md` — `src/id-generator.ts`: generateId, validateId,
+    validateAliasId, aliasOf, MAX_SEQ
+  - `spec-schema.md` — `src/schema.ts` + `src/checksum.ts`: parseQuestionLine,
+    parseManifest (linha inválida rejeitada com log), computeChecksum,
+    verifyChecksum — **algoritmo de checksum travado na revisão de
+    implementação** (pendência encerrada)
+  - `spec-deep-link.md` — `src/deep-link.ts`: canonicalUrl, fallbackUrl,
+    resolveAlias
+  - `spec-contract-tests.md` — `tests/contract/`: 44 casos citáveis, 44
+    verdes; fixtures golden; oráculo node:crypto; auditoria de rede em
+    `dist/src`; barreira `prepublishOnly`
+  - TypeScript ESM, zero dependência de runtime, Node ≥ 20 e browser;
+    `package-lock.json` commitado; CI (GitHub Actions) em todo push/PR.
+
 ## Autorizado (especificado; implementar)
 
-- **F1 — fatia mínima**, specs prontas:
-  - `spec-id-generator.md` — gerador e validador de ID pública
-  - `spec-schema.md` — schema de questão e do `manifest.jsonl`
-  - `spec-deep-link.md` — helper de deep-link canônico + fallback
-  - `spec-contract-tests.md` — testes de contrato: a barreira de publicação
-    (suíte no pacote, casos citáveis citando a constitution regra por regra,
-    fixtures golden versionadas)
-  - Implementação em TypeScript, testes de unidade, zero dependência externa.
 - **F1.5 — suite de conformidade:** ação de CI reutilizável que valida um
-  `manifest.jsonl` (linha a linha, rejeitando com log) — o mesmo verificador
-  que o hub usará na ingestão. Reusa a suíte de `spec-contract-tests.md`.
-- **Tag `v0.1.0`** no commit que contém as 4 specs — ancora o número que o
-  `noos.registry.json` do hub referencia (mantenedor; ver DEPLOY-style no
-  README).
+  `manifest.jsonl` externo (linha a linha, rejeitando com log) — o mesmo
+  verificador que o hub usará na ingestão. Reusa `parseManifest` +
+  `verifyChecksum` da F1; o que falta é o empacotamento como GitHub Action
+  e a decisão do que é reject × warn no lado do hub.
 
 ## Pendente (decisão ou gatilho externo)
 
-- **Publicação npm como `@noos/axon`** — gatilho: código da F1 pronto e o
-  primeiro app disposto a adotar. Publicar sem consumidor é promessa vazia.
+- **Publicação npm como `@noos/axon`** — gatilho: código da F1 pronto ✅ e o
+  primeiro app disposto a adotar (falta este). Publicar sem consumidor é
+  promessa vazia. Quando o gatilho chegar: criar a org `@noos` no npm,
+  trocar `private: true` → `false` + `publishConfig` com `access: public`,
+  publicar `0.2.0` (a suíte roda no `prepublishOnly`).
 - **Escopo `@noos` no npm** — criar a organização npm e o registro do token
   no CI (mantenedor).
-- **Travar o algoritmo de `checksum`** (canonicalização exata do conteúdo) —
-  antes da primeira ID real emitida por qualquer app.
+- **Tag `v0.2.0`** no commit da F1 — ancora o número publicado; a tag
+  `v0.1.0` (spec-first) permanece onde está, como história.
 
 ## Adiado (intencionalmente)
 

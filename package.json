@@ -1,24 +1,47 @@
 {
   "name": "@noos/axon",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Biblioteca compartilhada do ecossistema Noos: schema de questões, IDs públicas e deep-link canônico. Spec-first na v0.1.0: o contrato (constitution.md) é a entrega; o código vem na fatia F1 (ver plan.md). O nome plano 'axon' esta tomado no npm por terceiros — a publicacao usa este escopo.",
+  "description": "Biblioteca compartilhada do ecossistema Noos: IDs públicas de questão, schema do manifest.jsonl e deep-link canônico. F1 implementada em TypeScript puro (zero dependência de runtime). O nome plano 'axon' esta tomado no npm por terceiros — a publicacao usa este escopo.",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ironidesflj/axon"
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
   },
   "files": [
+    "dist",
     "constitution.md",
     "README.md",
     "CHANGELOG.md",
     "LICENSE.md"
   ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json && cp -r tests/contract/fixtures dist/tests/contract/",
+    "test": "npm run build && node --test dist/tests/contract/*.test.js",
+    "prepublishOnly": "npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.4"
+  },
   "keywords": [
     "noos",
     "axon",
     "specification-driven-development",
     "question-bank",
-    "spaced-repetition"
-  ]
+    "spaced-repetition",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ironidesflj/axon"
+  }
 }

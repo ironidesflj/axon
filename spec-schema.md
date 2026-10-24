@@ -1,6 +1,6 @@
 # spec-schema
 
-Especificação da fatia F1 · estado: **especificada, aguardando implementação**
+Especificação da fatia F1 · estado: **implementada na v0.2.0** (`src/schema.ts` + `src/checksum.ts`, suíte em `tests/contract/schema.test.ts` e `checksum.test.ts`)
 
 ## Problema
 
@@ -44,11 +44,56 @@ reporta ambas.
 
 ## Aceitação (evidência de conclusão)
 
-- Fixture com o exemplo canônico da constitution parseia limpo.
-- Fixture com 3 linhas (1 válida, 1 com JSON quebrado, 1 sem `checksum`)
-  devolve 1 ok + 2 rejections com número de linha e motivo.
-- O mesmo código roda no CI do app (que publica) e no build do hub (que
+- ✅ Fixture com o exemplo canônico da constitution parseia limpo
+  (`manifest.good.jsonl` — com o checksum real completando a elipse
+  editorial `"9f2c…"` do documento).
+- ✅ Fixture com uma linha por tipo de defeito (`manifest.dirty.jsonl`:
+  1 válida + 8 defeitos) devolve 1 ok + 8 rejections com número de linha e
+  motivo — incluindo JSON quebrado e campo ausente, como exigido.
+- ✅ O mesmo código roda no CI do app (que publica) e no build do hub (que
   ingere) — uma verdade, dois lados.
+
+## Pendência RESOLVIDA na v0.2.0 (revisão de implementação)
+
+O algoritmo de `checksum` está travado:
+
+```
+checksum = "sha256:" + hex(SHA-256(UTF-8(JSON.stringify(
+    [statement, options, answer, reference]))))
+```
+
+Decisões que fecham a pendência ("o que entra na soma"):
+
+- **Só o `snapshot` entra** — os 4 campos na ordem fixa statement, options,
+  answer, reference. Metadata (`id`, `exam`, `topics`, `difficulty`, `lang`,
+  `version`, `aliases`) fica fora: reclassificar tópico ou dificuldade não
+  invalida a soma do conteúdo.
+- **`options` entra como array** (JSON aninhado), nunca concatenado —
+  `["A","B"]` e `["A|B"]` produzem somas diferentes por construção.
+- **`version` NÃO entra** (bookkeeping ≠ conteúdo).
+- **`JSON.stringify` do array de 4 elementos** — determinístico em qualquer
+  engine desde ES2019 (well-formed stringify; lone surrogates escapados).
+- **Formato do campo:** `sha256:` + 64 hex **minúsculo**.
+- **`parse` valida formato; `verifyChecksum` valida conteúdo** — quem
+  publica (app) e quem ingere (hub) chamam à parte.
+- **Implementação pura** (FIPS 180-4, `src/sha256.ts`), auditada pela
+  suíte contra o oráculo `node:crypto` em 200 entradas determinísticas.
+
+Mudar qualquer decisão acima DEPOIS da primeira ID real emitida = MAJOR
+com aviso de 90 dias (constitution §6).
+
+## Travado na revisão de implementação (v0.2.0)
+
+- **`exam` ↔ id:** o campo `exam` (forma humana, "AZ-900") deve corresponder
+  ao código da prova embutido na `id` ("AZ900", normalizado sem traços) —
+  manifesto que arquivaria a questão na certificação errada é rejeitado.
+- **`snapshot.options` ≥ 2** alternativas não vazias; `statement` e `answer`
+  não vazios; `reference` aceita vazia.
+- **Campos extras** na linha: tolerados na leitura, não repassados no
+  record (forward compat de leitura, sem promessa de escrita).
+- **Linha em branco** é pulada, não rejeitada (arquivos de CI geram
+  trailing newline). **`difficulty` é vocabulário livre** do app emissor
+  (métrica agregada, nunca individual — constitution §2).
 
 ## Efeito no manifesto
 
@@ -71,11 +116,3 @@ campo `id`.
 
 Corrigir, reescrever ou normalizar linhas inválidas (o hub nunca corrige o
 arquivo de origem); qualquer persistência; qualquer rede.
-
-## Pendência travada aqui
-
-O **algoritmo exato do `checksum`** (o que entra na soma: qual ordem de
-campos, normalização de whitespace, versão incluída ou não) fica congelado
-neste spec na revisão de implementação — **antes** da primeira ID real
-emitida por qualquer app. Depois da primeira publicação, mudar a soma é
-MAJOR com aviso de 90 dias.

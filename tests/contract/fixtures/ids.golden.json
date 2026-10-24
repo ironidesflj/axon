@@ -1,0 +1,100 @@
+{
+  "valid": [
+    {
+      "id": "RAN-AZ900-00042",
+      "prefix": "RAN",
+      "exam": "AZ900",
+      "seq": 42
+    },
+    {
+      "id": "SYN-CTFL-00001",
+      "prefix": "SYN",
+      "exam": "CTFL",
+      "seq": 1
+    },
+    {
+      "id": "SYN-CTFL-00007",
+      "prefix": "SYN",
+      "exam": "CTFL",
+      "seq": 7
+    },
+    {
+      "id": "MYE-SC900-00001",
+      "prefix": "MYE",
+      "exam": "SC900",
+      "seq": 1
+    },
+    {
+      "id": "THA-PSMI-00001",
+      "prefix": "THA",
+      "exam": "PSMI",
+      "seq": 1
+    },
+    {
+      "id": "ENG-DP900-00001",
+      "prefix": "ENG",
+      "exam": "DP900",
+      "seq": 1
+    },
+    {
+      "id": "RAN-CTALTA-99999",
+      "prefix": "RAN",
+      "exam": "CTALTA",
+      "seq": 99999
+    }
+  ],
+  "invalid": [
+    {
+      "id": "RAN-AZ900-0004",
+      "reasonContains": "sequencial"
+    },
+    {
+      "id": "RAN-AZ900-000420",
+      "reasonContains": "sequencial"
+    },
+    {
+      "id": "RAN-AZ900-00a42",
+      "reasonContains": "sequencial"
+    },
+    {
+      "id": "RAN-AZ900-00000",
+      "reasonContains": "00001"
+    },
+    {
+      "id": "ran-az900-00042",
+      "reasonContains": "prefixo"
+    },
+    {
+      "id": "XYZ-CTFL-00042",
+      "reasonContains": "registro"
+    },
+    {
+      "id": "RAN-az900-00042",
+      "reasonContains": "prova"
+    },
+    {
+      "id": "RAN-AZ 900-00042",
+      "reasonContains": "prova"
+    },
+    {
+      "id": "RAN-AZ900",
+      "reasonContains": "formato"
+    },
+    {
+      "id": "",
+      "reasonContains": "vazia"
+    }
+  ],
+  "aliasValid": [
+    "GLI-AZ900-00012",
+    "GLI-CTFL-00003",
+    "RAN-AZ900-00042",
+    "SYN-CTFL-00001"
+  ],
+  "aliasInvalid": [
+    "XYZ-CTFL-00042",
+    "FOO-AZ900-00012",
+    "GLI-CTFL-0000X",
+    "gli-az900-00012"
+  ]
+}

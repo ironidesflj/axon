@@ -1,0 +1,23 @@
+name: ci
+
+# Barreira de publicação (spec-contract-tests.md): a suíte de contrato roda
+# em todo push e PR. O release só existe depois de verde.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  contract:
+    name: testes de contrato
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm test

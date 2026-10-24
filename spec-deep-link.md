@@ -1,6 +1,6 @@
 # spec-deep-link
 
-Especificação da fatia F1 · estado: **especificada, aguardando implementação**
+Especificação da fatia F1 · estado: **implementada na v0.2.0** (`src/deep-link.ts`, suíte em `tests/contract/deep-link.test.ts`)
 
 ## Problema
 
@@ -35,12 +35,25 @@ runtime, nada de telemetry, nada de "só funciona online".
 
 ## Aceitação (evidência de conclusão)
 
-- Testes de unidade: as duas URLs do exemplo canônico
-  (`noos.study` e `noos-hub.vercel.app`, pt e en) saem exatamente como na
-  constitution.
-- `resolveAlias("GLI-AZ900-00012", {"GLI-AZ900-00012": "RAN-AZ900-00042"})`
-  devolve o canônico de `RAN-AZ900-00042`.
-- Auditoria de dependências: zero chamada de rede no código do helper.
+- ✅ Testes de unidade: as duas URLs do exemplo canônico
+  (`noos.study` e `noos-hub.vercel.app`, pt e en) saem byte a byte como na
+  constitution — golden `links.golden.json`.
+- ✅ `resolveAlias("GLI-AZ900-00012", {"GLI-AZ900-00012": "RAN-AZ900-00042"})`
+  devolve `RAN-AZ900-00042`.
+- ✅ Auditoria de dependências: zero chamada de rede no código — a suíte
+  varre o `dist/src` que embarca no pacote (`library.test.ts`, §4).
+
+## Travado na revisão de implementação (v0.2.0)
+
+- **`resolveAlias` devolve a ID oficial** (não a URL — o idioma do segmento
+  é decisão do clique, não da tabela): `canonicalUrl(resolveAlias(alias, tabela), lang)`
+  é o caminho completo.
+- **Idempotente:** ID já oficial devolve ela mesma (badge recebe qualquer
+  forma).
+- **Alias fora da tabela lança** — a tabela é dado do app emissor; o Axon
+  não a guarda (spec-id-generator, regra 3).
+- **id inválida lança** em `canonicalUrl`/`fallbackUrl`: link quebrado em
+  ID publicada é violação direta do contrato (§3) — falha alto, falha cedo.
 
 ## Efeito no manifesto
 

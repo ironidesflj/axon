@@ -1,6 +1,6 @@
 # spec-contract-tests
 
-Especificação da fatia F1 · estado: **especificada, aguardando implementação**
+Especificação da fatia F1 · estado: **implementada na v0.2.0** — 44 casos citáveis, 44 verdes (`tests/contract/`, roda com `npm test`)
 
 ## Problema
 
@@ -62,12 +62,17 @@ não derruba as limpas`. O nome é a rastreabilidade.
 
 ## Aceitação (evidência de conclusão)
 
-- [ ] `npm test` executa a suíte e cada caso referencia a regra da constitution.
-- [ ] Fixtures golden versionadas; remoção de ID histórica falha o CI.
-- [ ] Um defeito injetado em `manifest.dirty.jsonl` derruba exatamente 1 caso.
-- [ ] Auditoria de rede/efeitos colaterais automatizada (varredura de `dist/`
-      + teste de pureza de import).
-- [ ] A tabela de casos mínimos 100% mapeada em testes com nome citável.
+- [x] `npm test` executa a suíte e cada caso referencia a regra da constitution
+  (44 casos `§…` — id-generator 12, schema 14, deep-link 6, checksum 6,
+  library 6).
+- [x] Fixtures golden versionadas; remoção de ID histórica falha o CI (o
+  golden é a tabela de verdade; `§4 MAJOR` o executa inteiro).
+- [x] Um defeito injetado em `manifest.dirty.jsonl` derruba exatamente 1 caso
+  (1 defeito = 1 linha = 1 rejection = 1 asserção).
+- [x] Auditoria de rede/efeitos colaterais automatizada (varredura de
+  `dist/src` + teste de pureza de import + oráculo `node:crypto` para o
+  SHA-256 puro).
+- [x] A tabela de casos mínimos 100% mapeada em testes com nome citável.
 
 ## Efeito no manifesto
 

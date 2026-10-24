@@ -1,8 +1,10 @@
 # Axon — a biblioteca compartilhada do ecossistema Noos
 
 O Axon é o que os cinco apps (Synapse, Ranvier, Myelin, Theta, Engram) e o hub
-compartilham: **motor de repetição espaçada (SM-2), schema de questões e IDs
-públicos** — o contrato técnico que faz o ecossistema ser um sistema.
+compartilham: **IDs públicas, schema de questões (manifest.jsonl) e deep-link
+canônico** — o contrato técnico que faz o ecossistema ser um sistema. (SM-2
+fica de fora por decisão deliberada — ver `plan.md`: só sobe pro Axon quando
+doer em dois apps.)
 
 **O que o Axon NÃO é** (regra dos três guias, travada):
 
@@ -15,17 +17,31 @@ públicos** — o contrato técnico que faz o ecossistema ser um sistema.
 > Se uma decisão vale para os cinco apps, ela pertence ao Axon.
 > Se vale para um só, fica no app.
 
-## Estado atual — v0.1.0 (spec-first)
+## Estado atual — v0.2.0 (F1 implementada)
 
-Este repositório nasce **de especificação antes do código**: o contrato completo
-está na [`constitution.md`](constitution.md) e a fatia mínima de implementação
-(F1) está especificada em [`spec-id-generator.md`](spec-id-generator.md),
-[`spec-schema.md`](spec-schema.md), [`spec-deep-link.md`](spec-deep-link.md) e
-[`spec-contract-tests.md`](spec-contract-tests.md) — esta última define a
-**barreira de publicação**: os testes de contrato que provam, regra por regra,
-que o código cumpre a constitution. O pacote ainda não está publicado no npm —
-o nome plano `axon` está tomado por terceiros; a publicação futura usa o
-escopo **`@noos/axon`**.
+A fatia mínima saiu do papel: **código TypeScript, zero dependência de
+runtime, suíte de contrato 44/44 verde**. O contrato continua na
+[`constitution.md`](constitution.md) (inalterada — a lei não muda com a
+implementação); as decisões da revisão de implementação estão travadas nas
+specs ([`spec-schema.md`](spec-schema.md) — algoritmo de checksum incluso).
+
+O pacote ainda não está publicado no npm — segue `private: true` até o
+primeiro app disposto a adotar (gatilho no [`plan.md`](plan.md)); o nome
+plano `axon` está tomado por terceiros, a publicação usa o escopo
+**`@noos/axon`**. Hoje o consumo é pelo repositório/tag.
+
+```ts
+import { generateId, validateId, parseManifest, canonicalUrl, computeChecksum } from './src/index.js';
+
+validateId('RAN-AZ900-00042');        // { ok: true, parsed: { prefix: 'RAN', exam: 'AZ900', seq: 42 } }
+generateId('RAN', 'az-900', 41);      // "RAN-AZ900-00042" — o exemplo canônico, por código real
+canonicalUrl('RAN-AZ900-00042', 'pt'); // "https://noos.study/pt/q/RAN-AZ900-00042"
+parseManifest(texto);                 // { ok: [...], rejected: [{ lineNumber, reason, raw }] }
+computeChecksum(snapshot);            // "sha256:<64 hex>"
+```
+
+A suíte de contrato roda com `npm test` (Node ≥ 20) e é barreira de
+publicação: `prepublishOnly` a executa antes de qualquer publish.
 
 ## Registro de prefixos de ID
 
@@ -42,13 +58,13 @@ do hub (noos.study). Este arquivo referencia; não duplica.
 
 ## Como consumir
 
-- **Hoje (v0.1.0, spec-first):** a `constitution.md` é a fonte da verdade do
-  contrato. Apps e hub leem, citam e apontam para ela — em vez de duplicar as
-  regras em cada guia.
-- **Quando a F1 existir (código):** `@noos/axon` no npm, **pin exato sem `^`**
-  (ex.: `@noos/axon@0.1.3`), lockfile commitado, versão anotada no
-  `current-state.md` do app consumidor. MAJOR do pacote nunca quebra contrato de
-  ID publicado — IDs são para sempre.
+- **Hoje (v0.2.0, código no repo, npm pendente):** consuma pelo repositório
+  (git dependency pela tag) e registre o pin no `current-state.md` do
+  consumidor — a regra do pin exato já vale (constitution §4).
+- **Quando o npm chegar:** `@noos/axon` com **pin exato sem `^`**
+  (ex.: `@noos/axon@0.2.0`), lockfile commitado, versão anotada no
+  `current-state.md` do app consumidor. MAJOR do pacote nunca quebra
+  contrato de ID publicada — IDs são para sempre.
 
 ## Arquivos canônicos (SDD)
 
@@ -57,9 +73,11 @@ do hub (noos.study). Este arquivo referencia; não duplica.
 | `README.md` | este arquivo — organização e registro ativo |
 | [`constitution.md`](constitution.md) | **o contrato** — regras permanentes de ID, manifesto e deep-link |
 | [`current-state.md`](current-state.md) | estado verificado, versões e limitações |
-| [`plan.md`](plan.md) | autorizado, pendente, adiado e fora de escopo |
+| [`plan.md`](plan.md) | feito, autorizado, pendente, adiado e fora de escopo |
+| `src/` | a implementação F1 (id-generator, schema, deep-link, checksum) |
+| `tests/contract/` | **a prova** — suíte que verifica a constitution, caso a caso |
 | `spec-*.md` | problema e contrato de cada mudança, com aceitação |
-| [`spec-contract-tests.md`](spec-contract-tests.md) | **a prova** — testes que verificam a constitution, caso a caso |
+| [`spec-contract-tests.md`](spec-contract-tests.md) | a spec da suíte acima (casos mínimos, fixtures, barreira) |
 
 ## Licença
 
