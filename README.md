@@ -20,9 +20,12 @@ públicos** — o contrato técnico que faz o ecossistema ser um sistema.
 Este repositório nasce **de especificação antes do código**: o contrato completo
 está na [`constitution.md`](constitution.md) e a fatia mínima de implementação
 (F1) está especificada em [`spec-id-generator.md`](spec-id-generator.md),
-[`spec-schema.md`](spec-schema.md) e [`spec-deep-link.md`](spec-deep-link.md).
-O pacote ainda não está publicado no npm — o nome plano `axon` está tomado por
-terceiros; a publicação futura usa o escopo **`@noos/axon`**.
+[`spec-schema.md`](spec-schema.md), [`spec-deep-link.md`](spec-deep-link.md) e
+[`spec-contract-tests.md`](spec-contract-tests.md) — esta última define a
+**barreira de publicação**: os testes de contrato que provam, regra por regra,
+que o código cumpre a constitution. O pacote ainda não está publicado no npm —
+o nome plano `axon` está tomado por terceiros; a publicação futura usa o
+escopo **`@noos/axon`**.
 
 ## Registro de prefixos de ID
 
@@ -56,6 +59,7 @@ do hub (noos.study). Este arquivo referencia; não duplica.
 | [`current-state.md`](current-state.md) | estado verificado, versões e limitações |
 | [`plan.md`](plan.md) | autorizado, pendente, adiado e fora de escopo |
 | `spec-*.md` | problema e contrato de cada mudança, com aceitação |
+| [`spec-contract-tests.md`](spec-contract-tests.md) | **a prova** — testes que verificam a constitution, caso a caso |
 
 ## Licença
 

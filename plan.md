@@ -10,10 +10,16 @@ Out/2026 · três pistas: **biblioteca**, **publicação**, **adoção**.
   - `spec-id-generator.md` — gerador e validador de ID pública
   - `spec-schema.md` — schema de questão e do `manifest.jsonl`
   - `spec-deep-link.md` — helper de deep-link canônico + fallback
+  - `spec-contract-tests.md` — testes de contrato: a barreira de publicação
+    (suíte no pacote, casos citáveis citando a constitution regra por regra,
+    fixtures golden versionadas)
   - Implementação em TypeScript, testes de unidade, zero dependência externa.
 - **F1.5 — suite de conformidade:** ação de CI reutilizável que valida um
   `manifest.jsonl` (linha a linha, rejeitando com log) — o mesmo verificador
-  que o hub usará na ingestão.
+  que o hub usará na ingestão. Reusa a suíte de `spec-contract-tests.md`.
+- **Tag `v0.1.0`** no commit que contém as 4 specs — ancora o número que o
+  `noos.registry.json` do hub referencia (mantenedor; ver DEPLOY-style no
+  README).
 
 ## Pendente (decisão ou gatilho externo)
 

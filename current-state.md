@@ -9,7 +9,10 @@
   deep-link canônico com fallback, regras da biblioteca, idioma e precedência
   entre documentos.
 - **Specs da fatia F1** (especificadas, **não implementadas**):
-  `spec-id-generator.md`, `spec-schema.md`, `spec-deep-link.md`.
+  `spec-id-generator.md`, `spec-schema.md`, `spec-deep-link.md` e
+  `spec-contract-tests.md` (testes de contrato — a barreira de publicação
+  npm: casos citáveis por regra da constitution, fixtures golden
+  versionadas, `ids.golden.json` que só cresce).
 - **Registro de prefixos** referenciado: `SYN`, `RAN` oficiais; `MYE`, `THA`,
   `ENG` previstos no registro da marca-mãe, definitivos no batismo. Alias
   histórico documentado: `GLI-` (codinome de nascimento do Ranvier).
@@ -40,6 +43,11 @@
 
 - O contrato ainda não tem suite de conformidade (validador de manifesto
   publicado como CI reutilizável). Candidato natural à F1.5 — ver `plan.md`.
+  A **especificação** dos testes que a própria F1 deve passar já existe
+  (`spec-contract-tests.md`); o que falta é código.
+- A suíte de testes de contrato — como todo o resto do pacote — só ganha
+  execução real na implementação da F1; até lá, fixtures e casos são
+  especificação, não evidência.
 - O exemplo de `checksum` é ilustrativo; o algoritmo exato de canonicalização
   do conteúdo (o que entra na soma) será travado na `spec-schema.md` na
   revisão de implementação, antes da primeira emissão real de ID.
