@@ -3,6 +3,23 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) ·
 versionamento semver · toda entrada tem motivo.
 
+## [0.2.2] — out. 2026
+
+O Ranvier linkou o pacote (fatia 1 — pin exato, out/2026): primeiro
+consumidor real. Esta versão documenta o caminho para os próximos.
+
+### Adicionado
+
+- **`docs/guia-de-adocao.md`** — guia formal de adoção para os apps: as cinco
+  fatias com aceitação por fatia, regras de pin/flag e o Ranvier como exemplo
+  trabalhado do alias `GLI-`→`RAN-`. Entra no tarball (`files` += `docs`).
+- Registro do Ranvier em `current-state.md` e link do guia no README.
+
+### Sem mudança
+
+- `src/` — nenhum código alterado; a suíte segue 44/44.
+- `constitution.md` — a lei não muda com documentação.
+
 ## [0.2.1] — out. 2026
 
 Consolidação do pacote público após a publicação da F1.

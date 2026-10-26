@@ -1,6 +1,6 @@
 # current-state — Axon
 
-Última verificação: out/2026 · versão 0.2.0
+Última verificação: out/2026 · versão 0.2.2
 
 ## O que existe e está verificado
 
@@ -37,21 +37,23 @@
 
 ## O que NÃO existe (e não fingir que existe)
 
-- **npm publicado:** `@ironidesflj/axon@0.2.0` está público, com `latest`
+- **npm publicado:** `@ironidesflj/axon@0.2.1` está público, com `latest`
   apontando para a implementação F1 e `prepublishOnly` verde. A versão de
-  consolidação documental é `0.2.1`; nenhum consumidor real adotou o pacote
-  ainda.
-- **Nenhum consumidor real.** Nenhum app linkou o pacote; nenhuma ID pública
-  real emitida; nenhum manifesto ingerido. Todo ID em fixtures e exemplos é
-  ilustrativo (constitution §1).
+  consolidação documental é `0.2.2`.
+- **Adoção além da fatia 1.** O Ranvier linkou o pacote, mas nenhuma ID
+  pública real foi emitida e nenhum manifesto foi publicado — as fatias 2–5
+  seguem atrás de feature flag (`docs/guia-de-adocao.md`).
 - A página `/q/{ID}` e a ingestão do hub continuam entrega da Fase 2; a
   ação de CI reutilizável (F1.5) está especificada, não empacotada.
 
 ## Consumidores atuais
 
-- Nenhum. Hub e apps referenciam o contrato; a adoção é decisão e cronograma
-  de cada um — o contrato foi desenhado para adoção incremental, sem
-  big-bang (cada parte entra sozinha, atrás de feature flag).
+- **Ranvier** — fatia 1 (link): `@ironidesflj/axon@0.2.1` com pin exato,
+  `bun.lock` commitado, registro no `docs/sdd/current-state.md` do app
+  (out/2026). Próximas fatias (IDs, aliases GLI→RAN, checksum, manifesto)
+  seguem o `docs/guia-de-adocao.md`, cada uma atrás de feature flag.
+- Hub — referencia o contrato (registro do hub); não consome o pacote em
+  runtime (é estático, sem build de aplicação).
 
 ## Limitações conhecidas
 

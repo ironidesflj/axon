@@ -20,6 +20,9 @@ Out/2026 · três pistas: **biblioteca**, **publicação**, **adoção**.
     `dist/src`; barreira `prepublishOnly`
   - TypeScript ESM, zero dependência de runtime, Node ≥ 20 e browser;
     `package-lock.json` commitado; CI (GitHub Actions) em todo push/PR.
+- **Primeiro consumidor — Ranvier** (fatia 1: link com pin exato
+  `@ironidesflj/axon@0.2.1`, out/2026). Guia formal de adoção para os
+  próximos apps: `docs/guia-de-adocao.md`.
 
 ## Autorizado (especificado; implementar)
 

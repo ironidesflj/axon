@@ -57,7 +57,9 @@ do hub (noos.study). Este arquivo referencia; não duplica.
 
 ## Como consumir
 
-- **Principal:** `npm install @ironidesflj/axon@0.2.1` com **pin exato sem
+- **O caminho completo:** [`docs/guia-de-adocao.md`](docs/guia-de-adocao.md)
+  — as cinco fatias da adoção, com aceitação por fatia.
+- **Principal:** `npm install @ironidesflj/axon@0.2.2` com **pin exato sem
   `^`**, lockfile commitado e versão anotada no `current-state.md` do
   consumidor.
 - **Alternativo:** dependência Git pela tag, quando o consumidor precisar
