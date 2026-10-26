@@ -1,4 +1,4 @@
-// @noos/axon — a biblioteca compartilhada do ecossistema Noos (constitution.md).
+// @ironidesflj/axon — a biblioteca compartilhada do ecossistema Noos (constitution.md).
 // Fatia F1: gerador/validador de ID pública, schema do manifest.jsonl,
 // deep-link canônico e checksum. Zero dependência de runtime.
 

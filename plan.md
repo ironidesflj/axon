@@ -29,17 +29,14 @@ Out/2026 · três pistas: **biblioteca**, **publicação**, **adoção**.
   `verifyChecksum` da F1; o que falta é o empacotamento como GitHub Action
   e a decisão do que é reject × warn no lado do hub.
 
-## Pendente (decisão ou gatilho externo)
+## Feito (publicação)
 
-- **Publicação npm como `@noos/axon`** — gatilho: código da F1 pronto ✅ e o
-  primeiro app disposto a adotar (falta este). Publicar sem consumidor é
-  promessa vazia. Quando o gatilho chegar: criar a org `@noos` no npm,
-  trocar `private: true` → `false` + `publishConfig` com `access: public`,
-  publicar `0.2.0` (a suíte roda no `prepublishOnly`).
-- **Escopo `@noos` no npm** — criar a organização npm e o registro do token
-  no CI (mantenedor).
-- **Tag `v0.2.0`** no commit da F1 — ancora o número publicado; a tag
-  `v0.1.0` (spec-first) permanece onde está, como história.
+- **Publicação npm:** `@ironidesflj/axon@0.2.0` pública, com a suíte verde no
+  `prepublishOnly`.
+- **Namespace público:** o escopo `@noos` foi descartado por pertencer a
+  terceiro; o pacote usa `@ironidesflj`.
+- **Tag `v0.2.0`:** preservada como o artefato originalmente publicado; a
+  consolidação documental segue em `v0.2.1`.
 
 ## Adiado (intencionalmente)
 

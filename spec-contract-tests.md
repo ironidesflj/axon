@@ -5,7 +5,7 @@ Especificação da fatia F1 · estado: **implementada na v0.2.0** — 44 casos c
 ## Problema
 
 A `constitution.md` é lei, mas hoje nada a verifica mecanicamente. Quando a
-F1 virar código e o pacote `@noos/axon` for publicado, "o código cumpre o
+F1 virar código e o pacote `@ironidesflj/axon` for publicado, "o código cumpre o
 contrato" vira afirmação de quem escreveu — e a promessa semver do npm
 transforma divergência silenciosa em dívida de todos os consumidores ao mesmo
 tempo. Teste de unidade comum testa implementação; o que falta é **teste de

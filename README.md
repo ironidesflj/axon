@@ -17,7 +17,7 @@ doer em dois apps.)
 > Se uma decisão vale para os cinco apps, ela pertence ao Axon.
 > Se vale para um só, fica no app.
 
-## Estado atual — v0.2.0 (F1 implementada)
+## Estado atual — v0.2.1 (F1 implementada)
 
 A fatia mínima saiu do papel: **código TypeScript, zero dependência de
 runtime, suíte de contrato 44/44 verde**. O contrato continua na
@@ -25,10 +25,9 @@ runtime, suíte de contrato 44/44 verde**. O contrato continua na
 implementação); as decisões da revisão de implementação estão travadas nas
 specs ([`spec-schema.md`](spec-schema.md) — algoritmo de checksum incluso).
 
-O pacote ainda não está publicado no npm — segue `private: true` até o
-primeiro app disposto a adotar (gatilho no [`plan.md`](plan.md)); o nome
-plano `axon` está tomado por terceiros, a publicação usa o escopo
-**`@noos/axon`**. Hoje o consumo é pelo repositório/tag.
+Publicado no npm desde out/2026 como **`@ironidesflj/axon`** — o nome plano
+`axon` e o escopo `@noos` pertencem a terceiros. O pacote é público e deve
+ser consumido com pin exato.
 
 ```ts
 import { generateId, validateId, parseManifest, canonicalUrl, computeChecksum } from './src/index.js';
@@ -58,12 +57,11 @@ do hub (noos.study). Este arquivo referencia; não duplica.
 
 ## Como consumir
 
-- **Hoje (v0.2.0, código no repo, npm pendente):** consuma pelo repositório
-  (git dependency pela tag) e registre o pin no `current-state.md` do
-  consumidor — a regra do pin exato já vale (constitution §4).
-- **Quando o npm chegar:** `@noos/axon` com **pin exato sem `^`**
-  (ex.: `@noos/axon@0.2.0`), lockfile commitado, versão anotada no
-  `current-state.md` do app consumidor. MAJOR do pacote nunca quebra
+- **Principal:** `npm install @ironidesflj/axon@0.2.1` com **pin exato sem
+  `^`**, lockfile commitado e versão anotada no `current-state.md` do
+  consumidor.
+- **Alternativo:** dependência Git pela tag, quando o consumidor precisar
+  acompanhar o repositório diretamente. MAJOR do pacote nunca quebra
   contrato de ID publicada — IDs são para sempre.
 
 ## Arquivos canônicos (SDD)

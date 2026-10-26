@@ -1,8 +1,11 @@
 {
-  "name": "@noos/axon",
-  "version": "0.2.0",
+  "name": "@ironidesflj/axon",
+  "version": "0.2.1",
   "description": "Biblioteca compartilhada do ecossistema Noos: IDs públicas de questão, schema do manifest.jsonl e deep-link canônico. F1 implementada em TypeScript puro (zero dependência de runtime). O nome plano 'axon' esta tomado no npm por terceiros — a publicacao usa este escopo.",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "engines": {
     "node": ">=20"

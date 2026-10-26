@@ -76,7 +76,7 @@ Nenhum em runtime (o hub valida com o mesmo código na ingestão — ver
 ## Efeito no Axon
 
 É a primeira parte da fatia F1; `spec-schema.md` e `spec-deep-link.md`
-dependem das suas saídas. Publicação junto no mesmo pacote `@noos/axon`.
+dependem das suas saídas. Publicação junto no mesmo pacote `@ironidesflj/axon`.
 
 ## Fora de escopo
 

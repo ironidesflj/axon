@@ -3,6 +3,20 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) ·
 versionamento semver · toda entrada tem motivo.
 
+## [0.2.1] — out. 2026
+
+Consolidação do pacote público após a publicação da F1.
+
+### Corrigido
+
+- Namespace consolidado em `@ironidesflj/axon` nos arquivos canônicos.
+- README atualizado para consumo pelo npm com pin exato.
+- Metadados de publicação pública e lockfile alinhados.
+
+### Decisões
+
+- A tag `v0.2.0` permanece preservada como registro do artefato publicado.
+
 ## [0.2.0] — out. 2026
 
 A fatia F1 sai do papel: o contrato ganha código — e a prova de que o

@@ -37,11 +37,10 @@
 
 ## O que NÃO existe (e não fingir que existe)
 
-- **npm ainda não publicado.** O pacote segue `private: true` — publicar sem
-  consumidor é promessa vazia (gatilho no `plan.md`: falta o primeiro app
-  disposto a adotar). Quando chegar: org `@noos`, `private: false` +
-  `publishConfig` `access: public`, publish `0.2.0` — a suíte roda sozinha
-  no `prepublishOnly`.
+- **npm publicado:** `@ironidesflj/axon@0.2.0` está público, com `latest`
+  apontando para a implementação F1 e `prepublishOnly` verde. A versão de
+  consolidação documental é `0.2.1`; nenhum consumidor real adotou o pacote
+  ainda.
 - **Nenhum consumidor real.** Nenhum app linkou o pacote; nenhuma ID pública
   real emitida; nenhum manifesto ingerido. Todo ID em fixtures e exemplos é
   ilustrativo (constitution §1).

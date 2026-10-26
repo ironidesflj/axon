@@ -6,7 +6,7 @@ Este é o contrato técnico do ecossistema Noos. Ele define o que os cinco apps
 (Synapse, Ranvier, Myelin, Theta, Engram) e o hub (noos.study) compartilham:
 a **identidade pública da questão** (ID), o **contrato de manifesto**
 (`manifest.jsonl`) e o **deep-link canônico**. Nada aqui é implementação —
-é lei. Implementações (a fatia F1 do pacote `@noos/axon`) cumprem este
+é lei. Implementações (a fatia F1 do pacote `@ironidesflj/axon`) cumprem este
 documento, nunca o contrário.
 
 **Precedência entre documentos** (declarada também nos guias):
@@ -142,8 +142,8 @@ Regras:
 
 - O Axon é **pacote TypeScript versionado com semver**, linkado no build de
   cada consumidor — **nunca um serviço**, nunca um runtime central.
-- Nome público: **`@noos/axon`** (o nome plano `axon` está tomado no npm por
-  terceiros; o escopo `@noos` é da casa).
+- Nome público: **`@ironidesflj/axon`** (o nome plano `axon` e o escopo
+  `@noos` estão tomados no npm por terceiros).
 - **Pin exato, sem `^`**: lockfile commitado; a versão em uso é registrada no
   `current-state.md` de quem consome.
 - **Fatia mínima (F1):** gerador de IDs, schema de questões, helper de
