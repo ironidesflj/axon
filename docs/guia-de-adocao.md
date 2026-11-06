@@ -108,8 +108,13 @@ import { computeChecksum, verifyChecksum } from '@ironidesflj/axon';
 
 questao.version += 1;
 questao.checksum = computeChecksum(questao.snapshot); // "sha256:<64 hex>"
-verifyChecksum(questao.snapshot, questao.checksum);    // true
+verifyChecksum(questao);                              // true — recebe o record inteiro
 ```
+
+`verifyChecksum` **recebe o record** (`{ checksum, snapshot }`) e recomputa a
+soma sobre `record.snapshot`, comparando com `record.checksum` — não são dois
+argumentos. O parse valida o formato do campo; a verificação de conteúdo é
+chamada à parte.
 
 O algoritmo é **travado** (SHA-256 sobre o JSON canônico de
 `[statement, options, answer, reference]` — detalhe na `spec-schema.md`,
@@ -131,7 +136,7 @@ import { parseManifest, verifyChecksum } from '@ironidesflj/axon';
 
 const { ok, rejected } = parseManifest(conteudo);
 if (rejected.length > 0) falharOCi(rejected); // linha, motivo — zero tolerância
-for (const q of ok) if (!verifyChecksum(q.snapshot, q.checksum)) falharOCi(q.id);
+for (const q of ok) if (!verifyChecksum(q)) falharOCi(q.id); // record inteiro
 ```
 
 Quem **publica** mira zero rejeições — a tolerância a linha suja
