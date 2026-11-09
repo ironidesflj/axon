@@ -23,6 +23,9 @@ Out/2026 · três pistas: **biblioteca**, **publicação**, **adoção**.
 - **Primeiro consumidor — Ranvier** (fatia 1: link com pin exato
   `@ironidesflj/axon@0.2.1`, out/2026). Guia formal de adoção para os
   próximos apps: `docs/guia-de-adocao.md`.
+- **v0.3.0 — política epitáfio (MINOR)** publicada em 09/nov/2026: `retired`
+  opcional + `isRetired`; testes 46/46; hub (pin 0.3.0) e Synapse (pin 0.3.0)
+  já consomem. Ranvier entra no mesmo lote via CI.
 
 ## Autorizado (especificado; implementar)
 
