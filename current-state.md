@@ -1,6 +1,6 @@
 # current-state — Axon
 
-Última verificação: out/2026 · versão 0.2.2
+Última verificação: nov/2026 · versão **0.3.0** (publicada no npm)
 
 ## O que existe e está verificado
 
@@ -8,6 +8,10 @@
   não muda com a implementação): formato de ID pública com as 4 regras, os 9
   campos do `manifest.jsonl`, deep-link canônico com fallback, regras da
   biblioteca, idioma e precedência entre documentos.
+- **v0.3.0 (MINOR, 09/nov/2026)** — política epitáfio: `QuestionRecord.retired?:
+  boolean` + `isRetired(record)`; campo opcional aditivo (checksum, ID e
+  deep-link inalterados). Publicada no npm e adotada pelo hub (pin 0.3.0) e
+  pelo Synapse (pin 0.3.0).
 - **F1 implementada** (`src/`, TypeScript ESM, zero dependência de runtime,
   Node ≥ 20 e browser):
   - `id-generator.ts` — `generateId` (normaliza a prova), `validateId`
