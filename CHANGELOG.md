@@ -3,6 +3,27 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) ·
 versionamento semver · toda entrada tem motivo.
 
+## [0.3.0] — nov. 2026
+
+Política **epitáfio**: questão retirada do banco ativo continua citável.
+MINOR com aviso — campo **opcional e aditivo**; consumidores antigos podem
+ignorá-lo (parser já tolera campos extras e o checksum não muda).
+
+### Adicionado
+
+- `QuestionRecord.retired?: boolean` — `true` = questão retirada do banco
+  ativo; a ID permanece eterna e o hub mantém a página canônica com aviso.
+  Ausente/false = ativa (comportamento anterior, sem migração).
+- `isRetired(record)` — helper exportado para hub/apps.
+- Testes de contrato: campo aceito (true/false), ausência = ativa, tipo
+  inválido rejeita a linha sem derrubar o arquivo.
+- `spec-schema.md`: campo documentado como extensão aditiva da v0.3.
+
+### Sem mudança
+
+- Formato dos 9 campos, checksum, ID e deep-link: idênticos. Nenhum record
+  publicado precisa mudar.
+
 ## [0.2.2] — out. 2026
 
 O Ranvier linkou o pacote (fatia 1 — pin exato, out/2026): primeiro

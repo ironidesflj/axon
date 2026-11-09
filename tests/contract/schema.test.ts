@@ -12,6 +12,7 @@ import {
   parseQuestionLine,
   verifyChecksum,
   computeChecksum,
+  isRetired,
 } from '../../src/index.js';
 
 const read = (name: string): string =>
@@ -127,4 +128,29 @@ test('§2 — parseQuestionLine lança LineError com reason e raw', () => {
     assert.match((e as LineError).reason, /exam.*ausente/);
     assert.ok((e as LineError).raw.length > 0);
   }
+});
+
+// v0.3 — política epitáfio: campo opcional e aditivo.
+test('§2 retired — aceita true/false, ausência = ativa e isRetired reflete', () => {
+  const base = JSON.parse(read('manifest.good.jsonl').split('\n')[0]) as Record<string, unknown>;
+  const active = parseQuestionLine(JSON.stringify(base));
+  assert.equal(isRetired(active), false);
+  assert.equal(active.retired, undefined);
+
+  const retiredTrue = parseQuestionLine(JSON.stringify({ ...base, retired: true }));
+  assert.equal(isRetired(retiredTrue), true);
+  assert.equal(retiredTrue.retired, true);
+
+  const retiredFalse = parseQuestionLine(JSON.stringify({ ...base, retired: false }));
+  assert.equal(isRetired(retiredFalse), false);
+});
+
+test('§2 retired — tipo inválido rejeita a linha, mas não o arquivo', () => {
+  const base = read('manifest.good.jsonl').split('\n')[0];
+  const bad = JSON.parse(base) as Record<string, unknown>;
+  const text = [JSON.stringify({ ...bad, retired: 'sim' }), base].join('\n');
+  const result = parseManifest(text);
+  assert.equal(result.ok.length, 1);
+  assert.equal(result.rejected.length, 1);
+  assert.match(result.rejected[0]!.reason, /retired.*booleano/);
 });

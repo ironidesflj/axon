@@ -16,6 +16,7 @@ do hub, não a escrita do app.
 ```ts
 // O schema dos 9 campos (constitution.md §2), como validação e tipos:
 parseQuestionLine(line: string): QuestionRecord        // lança LineError
+isRetired(record: QuestionRecord): boolean              // v0.3 — política epitáfio
 parseManifest(text: string): { ok: QuestionRecord[]; rejected: Rejection[] }
 // Rejection = { lineNumber, reason, raw } — NUNCA interrompe as demais linhas.
 
@@ -28,6 +29,7 @@ interface QuestionRecord {
   version: number               // inteiro ≥ 1
   checksum: string              // "sha256:<hex>" — ver Pendência abaixo
   aliases: string[]             // pode ser vazio
+  retired?: boolean             // v0.3: retirada do banco ativo (epitáfio); ausente = ativa
   snapshot: {
     statement: string           // enunciado
     options: string[]           // alternativas

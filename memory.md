@@ -65,3 +65,5 @@ Não repete o que já está em `current-state.md`, `plan.md`, `constitution.md` 
    publicado) antes de qualquer bump.
 3. Antes de editar doc de API: confirmar assinatura em `src/` **e**
    `tests/contract/` — o código publicado é a fonte, não o guia.
+
+- **2026-11-09:** v0.3.0 em PR (`feat/epitaph-retired`): campo opcional `retired` + `isRetired()` (política epitáfio aprovada em MINOR com aviso). Publicação no npm pendente do mantenedor (2FA); depois hub/apps sobem o pin.
