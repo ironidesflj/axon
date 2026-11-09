@@ -1,0 +1,47 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@11.13.0
+2 info using node@v24.16.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/iron/Documents/deepseek-harness/default-workspace/wt/axon-epitaph/.npmrc
+5 silly config load:file:/Users/iron/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm ci
+8 verbose argv "ci"
+9 verbose logfile logs-max:10 dir:/Users/iron/Documents/deepseek-harness/default-workspace/wt/axon-epitaph/.npm-cache/_logs/2026-11-09T17_48_15_958Z-
+10 verbose logfile /Users/iron/Documents/deepseek-harness/default-workspace/wt/axon-epitaph/.npm-cache/_logs/2026-11-09T17_48_15_958Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+14 silly idealTree buildDeps
+15 silly reify moves {}
+16 silly audit bulk request {
+16 silly audit   '@types/node': [ '20.19.43' ],
+16 silly audit   typescript: [ '5.9.3' ],
+16 silly audit   'undici-types': [ '6.21.0' ]
+16 silly audit }
+17 http cache typescript@https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz 0ms (cache hit)
+18 http cache undici-types@https://registry.npmjs.org/undici-types/-/undici-types-6.21.0.tgz 0ms (cache hit)
+19 http cache @types/node@https://registry.npmjs.org/@types/node/-/node-20.19.43.tgz 0ms (cache hit)
+20 silly tarball no local data for typescript@https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz. Extracting by manifest.
+21 silly tarball no local data for undici-types@https://registry.npmjs.org/undici-types/-/undici-types-6.21.0.tgz. Extracting by manifest.
+22 silly tarball no local data for @types/node@https://registry.npmjs.org/@types/node/-/node-20.19.43.tgz. Extracting by manifest.
+23 http fetch GET 200 https://registry.npmjs.org/undici-types/-/undici-types-6.21.0.tgz 233ms (cache miss)
+24 http fetch GET 200 https://registry.npmjs.org/npm 329ms
+25 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 373ms
+26 silly audit report {}
+27 http fetch GET 200 https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz 517ms (cache miss)
+28 http fetch GET 200 https://registry.npmjs.org/@types/node/-/node-20.19.43.tgz 558ms (cache miss)
+29 silly ADD node_modules/undici-types
+30 silly ADD node_modules/typescript
+31 silly ADD node_modules/@types/node
+32 verbose cwd /Users/iron/Documents/deepseek-harness/default-workspace/wt/axon-epitaph
+33 verbose os Darwin 27.0.0
+34 verbose node v24.16.0
+35 verbose npm  v11.13.0
+36 notice
+36 notice New major version of npm available! 11.13.0 -> 12.2.2
+36 notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+36 notice To update run: npm install -g npm@12.2.2
+36 notice  { force: true, Symbol(proc-log.meta): true }
+37 verbose exit 0
+38 info ok

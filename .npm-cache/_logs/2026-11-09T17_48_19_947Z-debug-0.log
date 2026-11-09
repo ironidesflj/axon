@@ -1,0 +1,18 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@11.13.0
+2 info using node@v24.16.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/iron/Documents/deepseek-harness/default-workspace/wt/axon-epitaph/.npmrc
+5 silly config load:file:/Users/iron/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm run build
+8 verbose argv "run" "build"
+9 verbose logfile logs-max:10 dir:/Users/iron/Documents/deepseek-harness/default-workspace/wt/axon-epitaph/.npm-cache/_logs/2026-11-09T17_48_19_947Z-
+10 verbose logfile /Users/iron/Documents/deepseek-harness/default-workspace/wt/axon-epitaph/.npm-cache/_logs/2026-11-09T17_48_19_947Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose cwd /Users/iron/Documents/deepseek-harness/default-workspace/wt/axon-epitaph
+13 verbose os Darwin 27.0.0
+14 verbose node v24.16.0
+15 verbose npm  v11.13.0
+16 verbose exit 0
+17 info ok

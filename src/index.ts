@@ -17,6 +17,7 @@ export {
   LineError,
   parseQuestionLine,
   parseManifest,
+  isRetired,
 } from './schema.js';
 export type { QuestionRecord, Rejection, ParseResult, Snapshot } from './schema.js';
 

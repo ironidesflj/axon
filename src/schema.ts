@@ -23,6 +23,12 @@ export interface QuestionRecord {
   checksum: string;
   aliases: string[];
   snapshot: Snapshot;
+  /**
+   * Question withdrawn from the active bank (policy "epitaph"): the public ID
+   * stays forever and the hub keeps serving a canonical page with a notice.
+   * Optional and additive — records without it are active.
+   */
+  retired?: boolean;
 }
 
 export interface Rejection {
@@ -123,6 +129,11 @@ export function parseQuestionLine(line: string): QuestionRecord {
     if (!va.ok) throw new LineError(`alias inválida: ${va.reason}`, line);
   }
 
+  const retired = o['retired'];
+  if (retired !== undefined && typeof retired !== 'boolean') {
+    throw new LineError('campo "retired" deve ser booleano quando presente', line);
+  }
+
   const snap = o['snapshot'];
   if (snap === undefined) throw new LineError('campo "snapshot" ausente', line);
   if (typeof snap !== 'object' || snap === null || Array.isArray(snap)) {
@@ -146,7 +157,7 @@ export function parseQuestionLine(line: string): QuestionRecord {
     throw new LineError('snapshot.reference deve ser string (pode ser vazia)', line);
   }
 
-  return {
+  const record: QuestionRecord = {
     id,
     exam,
     topics: topics as string[],
@@ -162,6 +173,13 @@ export function parseQuestionLine(line: string): QuestionRecord {
       reference: s['reference'] as string,
     },
   };
+  if (retired !== undefined) record.retired = retired;
+  return record;
+}
+
+/** `true` quando a questão foi retirada do banco ativo (política epitáfio). */
+export function isRetired(record: QuestionRecord): boolean {
+  return record.retired === true;
 }
 
 /**
